@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-05-14T23:03:11.859Z",
-  "template_count": 34,
+  "template_count": 35,
   "templates": [
     {
       "slug": "8-bit-orbit",
@@ -1067,6 +1067,20 @@
       "best_for": "Anything that should feel scholarly, literary, and quietly intelligent: research synthesis, white papers, academic and policy briefs, advisory deliverables, longform editorial pieces, founder reflections. Equally strong for any deck — including tech, business, or creator work — that wants a calm, considered atmosphere instead of energetic visuals.",
       "avoid_for": "Contexts that need visual heat or pop — the navy + warm-yellow Cormorant aesthetic is intentionally low-tempo.",
       "slide_count": 9
+    },
+    {
+      "slug": "marjon-numeracy",
+      "name": "Marjon Numeracy",
+      "tagline": "Plymouth Marjon University lecture template with a white canvas, teal headings, a three-colour footer bar, and the University logo.",
+      "mood": ["confident", "clear", "academic", "institutional"],
+      "occasion": ["mathematics lecture", "teacher education", "curriculum session", "professional learning", "academic presentation"],
+      "tone": ["authoritative", "practical", "structured", "accessible"],
+      "formality": "high",
+      "density": "medium",
+      "scheme": "light",
+      "best_for": "University and teacher-education decks that need a clear, confident Marjon visual identity, including numeracy, mathematics, curriculum, and professional-learning sessions.",
+      "avoid_for": "Decks that need a playful, informal, or dark visual identity.",
+      "slide_count": 6
     }
   ]
 }

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marjon Numeracy - Slide Template</title>
+  <style>
+    :root {
+      --teal: #003D50;
+      --maroon: #8B3556;
+      --green: #2F8717;
+      --blue: #0071BC;
+      --ink: #1D1D1B;
+      --mist: #EEEEEE;
+      --rule: #D4D4D4;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; background: #111; }
+    body {
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+    }
+
+    #deck {
+      display: flex;
+      width: 600vw;
+      height: 100vh;
+      transition: transform 360ms ease;
+    }
+
+    .slide {
+      position: relative;
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+      min-height: 560px;
+      padding: clamp(44px, 6.5vh, 80px) clamp(72px, 7vw, 110px) clamp(82px, 10vh, 122px);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .logo {
+      position: absolute;
+      top: clamp(18px, 2.7vh, 34px);
+      right: clamp(36px, 4.4vw, 68px);
+      width: clamp(180px, 19vw, 290px);
+      height: auto;
+      z-index: 2;
+    }
+
+    .page-number {
+      position: absolute;
+      right: clamp(56px, 6.4vw, 100px);
+      bottom: clamp(42px, 5vh, 64px);
+      color: var(--ink);
+      font-size: clamp(12px, 1.15vw, 18px);
+      font-weight: 700;
+    }
+
+    .tri-bar {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      height: clamp(24px, 3.6vh, 42px);
+    }
+    .tri-bar span:nth-child(1) { background: var(--maroon); }
+    .tri-bar span:nth-child(2) { background: var(--green); }
+    .tri-bar span:nth-child(3) { background: var(--blue); }
+
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { color: var(--teal); }
+    .eyebrow {
+      color: var(--teal);
+      font-size: clamp(13px, 1vw, 17px);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .title {
+      max-width: 70%;
+      font-size: clamp(48px, 6.5vw, 100px);
+      font-weight: 700;
+      letter-spacing: -.045em;
+      line-height: .98;
+    }
+    .subtitle {
+      max-width: 68%;
+      margin-top: clamp(24px, 3.6vh, 46px);
+      color: var(--teal);
+      font-size: clamp(24px, 2.5vw, 40px);
+      line-height: 1.25;
+    }
+    .slide-title {
+      max-width: 74%;
+      font-size: clamp(38px, 4.3vw, 68px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.04;
+    }
+    .lede {
+      max-width: 72%;
+      margin-top: clamp(16px, 2vh, 28px);
+      font-size: clamp(22px, 2vw, 32px);
+      line-height: 1.35;
+    }
+    .body-copy {
+      font-size: clamp(18px, 1.7vw, 27px);
+      line-height: 1.45;
+    }
+
+    /* Cover */
+    .cover .title { margin-top: clamp(92px, 15vh, 160px); }
+    .cover .subtitle { font-weight: 400; }
+    .cover-mark {
+      position: absolute;
+      right: clamp(20px, 7vw, 120px);
+      top: 25%;
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 45%;
+    }
+    .cover-mark span { display: block; width: clamp(15px, 1.35vw, 22px); }
+    .cover-mark span:nth-child(1) { height: 58%; background: var(--maroon); }
+    .cover-mark span:nth-child(2) { height: 34%; background: var(--green); }
+    .cover-mark span:nth-child(3) { height: 22%; background: var(--blue); }
+
+    /* Outcomes */
+    .outcome-list { margin-top: clamp(30px, 4.3vh, 58px); display: grid; gap: clamp(20px, 2.8vh, 34px); }
+    .outcome { display: grid; grid-template-columns: clamp(62px, 6.2vw, 94px) 1fr; gap: clamp(22px, 2.4vw, 38px); align-items: center; }
+    .outcome-num {
+      display: grid;
+      width: clamp(62px, 6.2vw, 94px);
+      height: clamp(62px, 6.2vw, 94px);
+      place-items: center;
+      color: #fff;
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 700;
+    }
+    .outcome:nth-child(1) .outcome-num, .outcome:nth-child(1) h3 { background: var(--maroon); color: #fff; }
+    .outcome:nth-child(2) .outcome-num, .outcome:nth-child(2) h3 { background: var(--green); color: #fff; }
+    .outcome:nth-child(3) .outcome-num, .outcome:nth-child(3) h3 { background: var(--blue); color: #fff; }
+    .outcome h3 {
+      display: inline-block;
+      padding: 5px 10px;
+      font-size: clamp(24px, 2.35vw, 37px);
+      font-weight: 700;
+    }
+    .outcome p { margin-top: 8px; }
+
+    /* Split-content */
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(44px, 5vw, 82px); margin-top: clamp(42px, 7.5vh, 90px); }
+    .split-grid > div + div { border-left: 1px solid var(--rule); padding-left: clamp(44px, 5vw, 82px); }
+    .section-head { margin-bottom: clamp(18px, 2.6vh, 32px); font-size: clamp(25px, 2.6vw, 42px); font-weight: 700; }
+    .maroon { color: var(--maroon); }
+    .blue { color: var(--blue); }
+    .key-line { margin-top: clamp(18px, 2vh, 27px); }
+
+    /* Prompt */
+    .prompt-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr); gap: clamp(40px, 5vw, 80px); align-items: center; height: 72%; }
+    .prompt-box { padding: clamp(28px, 3.5vw, 56px); border: 4px solid var(--teal); }
+    .prompt-box p { color: var(--teal); font-size: clamp(30px, 3.2vw, 52px); font-weight: 700; line-height: 1.16; }
+    .prompt-note { padding-left: clamp(24px, 2.8vw, 44px); border-left: clamp(10px, 1vw, 16px) solid var(--green); }
+    .prompt-note h3 { font-size: clamp(24px, 2.3vw, 36px); }
+    .prompt-note p { margin-top: 14px; }
+
+    /* Table */
+    .table-wrap { margin-top: clamp(26px, 3.4vh, 42px); overflow: hidden; border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: clamp(17px, 1.55vw, 24px); line-height: 1.28; }
+    thead { background: var(--maroon); color: #fff; text-align: left; }
+    th, td { padding: clamp(15px, 1.7vw, 26px); vertical-align: top; }
+    tbody tr:nth-child(odd) { background: var(--mist); }
+    tbody tr:nth-child(even) { background: #fff; }
+    tbody tr + tr { border-top: 1px solid #ddd; }
+    th { font-size: clamp(19px, 1.8vw, 28px); }
+
+    /* Closing */
+    .closing { display: grid; place-items: center; text-align: center; }
+    .closing h1 { max-width: 76%; font-size: clamp(52px, 6.4vw, 102px); font-weight: 700; line-height: 1; letter-spacing: -.045em; }
+    .closing p { max-width: 62%; margin-top: 24px; color: var(--teal); font-size: clamp(22px, 2.1vw, 34px); line-height: 1.35; }
+
+    .nav {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      z-index: 20;
+      display: grid;
+      gap: 8px;
+      transform: translateY(-50%);
+    }
+    .nav button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; background: #b7b7b7; cursor: pointer; }
+    .nav button.active { background: var(--teal); }
+    @media (max-width: 800px) {
+      .slide { min-height: 0; padding-left: 42px; padding-right: 42px; }
+      .logo { width: 150px; right: 24px; }
+      .title, .subtitle, .slide-title, .lede { max-width: 82%; }
+      .outcome-list { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main id="deck" aria-label="Marjon numeracy slide template">
+    <section class="slide cover">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <h1 class="title">[Presentation title]</h1>
+      <p class="subtitle">[A concise subtitle that explains the session, purpose, or audience.]</p>
+      <div class="cover-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="page-number">01</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <h2 class="slide-title">[Learning outcomes]</h2>
+      <p class="lede">[By the end of this session, participants will be able to:]</p>
+      <div class="outcome-list">
+        <div class="outcome"><div class="outcome-num">1</div><div><h3>[Outcome one]</h3><p class="body-copy">[Describe the first intended learning outcome.]</p></div></div>
+        <div class="outcome"><div class="outcome-num">2</div><div><h3>[Outcome two]</h3><p class="body-copy">[Describe the second intended learning outcome.]</p></div></div>
+        <div class="outcome"><div class="outcome-num">3</div><div><h3>[Outcome three]</h3><p class="body-copy">[Describe the third intended learning outcome.]</p></div></div>
+      </div>
+      <span class="page-number">02</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <h2 class="slide-title">[What this covers]</h2>
+      <p class="lede">[One sentence that frames the shared focus of the section.]</p>
+      <div class="split-grid">
+        <div><h3 class="section-head maroon">[First strand]</h3><p class="body-copy">[Explain the first strand or perspective. Keep the copy focused and readable.]</p><p class="body-copy key-line"><strong>[Key point]</strong> [Add a concise supporting detail.]</p></div>
+        <div><h3 class="section-head blue">[Second strand]</h3><p class="body-copy">[Explain the second strand or perspective. Use this space for a connected but distinct idea.]</p><p class="body-copy key-line"><strong>[Application]</strong> [Add a concise supporting detail.]</p></div>
+      </div>
+      <span class="page-number">03</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <p class="eyebrow">[Discussion or activity]</p>
+      <div class="prompt-grid">
+        <div class="prompt-box"><p>[Put the central question, worked example, or problem here.]</p></div>
+        <div class="prompt-note"><h3>[Teaching note]</h3><p class="body-copy">[Add a short instruction, prompt, or piece of context for learners.]</p></div>
+      </div>
+      <span class="page-number">04</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <h2 class="slide-title">[Evidence, examples, or resources]</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>[Heading one]</th><th>[Heading two]</th></tr></thead>
+          <tbody>
+            <tr><td>[Item or source]</td><td>[Explanation, application, or key evidence.]</td></tr>
+            <tr><td>[Item or source]</td><td>[Explanation, application, or key evidence.]</td></tr>
+            <tr><td>[Item or source]</td><td>[Explanation, application, or key evidence.]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="page-number">05</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+
+    <section class="slide closing">
+      <img class="logo" src="assets/marjon-logo.png" alt="Plymouth Marjon University" />
+      <div><h1>[Key takeaway]</h1><p>[Close with one concise point, next action, or invitation to discuss.]</p></div>
+      <span class="page-number">06</span>
+      <footer class="tri-bar" aria-hidden="true"><span></span><span></span><span></span></footer>
+    </section>
+  </main>
+  <nav class="nav" aria-label="Slide navigation"></nav>
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const nav = document.querySelector('.nav');
+    let current = 0;
+    function show(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      deck.style.transform = `translateX(-${current * 100}vw)`;
+      nav.querySelectorAll('button').forEach((button, i) => button.classList.toggle('active', i === current));
+    }
+    slides.forEach((slide, i) => {
+      const button = document.createElement('button');
+      button.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      button.addEventListener('click', () => show(i));
+      nav.appendChild(button);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'ArrowDown', ' '].includes(event.key)) { event.preventDefault(); show(current + 1); }
+      if (['ArrowLeft', 'ArrowUp'].includes(event.key)) { event.preventDefault(); show(current - 1); }
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+    show(0);
+  </script>
+</body>
+</html>
